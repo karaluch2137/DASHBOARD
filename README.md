@@ -6,5 +6,10 @@ usage:
 ```
 python3 app.py <host> <port>
 ```
+dependencies:
+```
+flask
+bs4
+```
 
 created by anon
