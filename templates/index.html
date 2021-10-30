@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css') }}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+</head>
+<body>
+<div id="blockade"><h1>nie dla mobilnego psa</h1></div>
+<div class="container">
+    <div class="b">
+        <div id="loader_b" class="loader"></div>
+        <div id="b_content" style="display:none;">
+            <h2 id="b_title"></h2>
+
+            <div style="width: 100%; display: table;">
+                <div style="margin:auto;width:max-content;">
+                    <div class="divCell"><p>get: <a target="_blank" id="b_get_href" rel="noopener noreferrer"
+                                                    href=""><span
+                            id="b_get">0</span></a></p></div>
+                    <div class="divCell"><p>posty na pontyfikat: <span class="list" id="b_pontyfikat">0</span></p></div>
+                    <div class="divCell"><p>aktywne posty: <span class="list" id="b_active">0</span></p></div>
+                </div>
+            </div>
+
+
+            <h3 id="pontyfikat_title">aktywność w ciagu ostatnich 24 godzin</h3>
+            <div id="pontyfikat_time_select" onchange="update_pontifikat_chart()">
+                <select id="pontyfikat_time_select_select">
+                    <option data-value="aktywność w ciagu ostatniej godziny" value="1">1 godzina</option>
+                    <option data-value="aktywność w ciagu ostatnich 2 godzin" value="2">2 godziny</option>
+                    <option data-value="aktywność w ciagu ostatnich 5 godzin" value="5">5 godziny</option>
+                    <option data-value="aktywność w ciagu ostatnich 12 godzin" value="12">12 godzin</option>
+                    <option data-value="aktywność w ciagu ostatnich 24 godzin" value="24">24 godziny</option>
+                </select>
+            </div>
+            <canvas id="pontyfikat_chart" style="width:100%;height:100%;"></canvas>
+            <script src="{{url_for('static', filename='js/pontyfikat.js')}}"></script>
+        </div>
+        <script src="{{url_for('static', filename='js/b.js')}}"></script>
+    </div>
+    <div class="online-chart">
+        <h2 id="active_users_title">liczba online w ciagu ostatnich 24 godzin</h2>
+        <canvas id="myChart" style="width:100%;height:100%;"></canvas>
+        <div id="time_select" onchange="update_users_chart()">
+            <select id="time_select_select">
+                <option data-value="liczba online w ciagu ostatniej godziny" value="1">1 godzina</option>
+                <option data-value="liczba online w ciagu ostatnich 2 godzin" value="2">2 godziny</option>
+                <option data-value="liczba online w ciagu ostatnich 5 godzin" value="5">5 godziny</option>
+                <option data-value="liczba online w ciagu ostatnich 12 godzin" value="12">12 godzin</option>
+                <option data-value="liczba online w ciagu ostatnich 24 godzin" value="24">24 godziny</option>
+            </select>
+        </div>
+
+        <script src="{{url_for('static', filename='js/active_users.js')}}"></script>
+    </div>
+    <div class="orgonity">
+        <h2>do orgonitów zostało:</h2>
+
+        <div id="orgonity_timer">
+            <p style="margin:1px;"><span id="orgonity_hours">00</span> godzin</p>
+            <p style="margin:1px;"><span id="orgonity_minutes">00</span> minut</p>
+            <p style="margin:1px;"><span id="orgonity_seconds">00</span> sekund</p>
+        </div>
+        <img id="orgonity_img" src="static/images/orgonity.jpg" alt="orgonity"/>
+        <script src="{{url_for('static', filename='js/orgonity.js')}}"></script>
+    </div>
+    <div class="boards">
+        <div style="height: max-content;">
+            <h2>obserwowane deski</h2>
+            <img style="width:80%;display:block;margin:auto;margin-bottom:10px;" src="/baner?Math.random()"
+                 alt="banner"/>
+        </div>
+        <div id="loader_boards" class="loader"></div>
+        <ul id="board_info_list"></ul>
+        <script src="{{url_for('static', filename='js/boardinfo.js')}}"></script>
+    </div>
+    <div class="online">
+        <div class="wrapper">
+            <h2>liczba online </h2>
+        </div>
+        <div id="loader_online" class="loader"></div>
+        <div id="wrapper_online" style="display:none;" class="wrapper">
+            <p id="online">0</p>
+        </div>
+        <script src="{{url_for('static', filename='js/online.js')}}"></script>
+    </div>
+    <div class="server">
+        <h2>informacje</h2>
+        <div id="loader_server" class="loader"></div>
+        <ul id="server_list" style="display:none;">
+            <li style="list-style:none;"><p>host: <a target="_blank" id="host_href" rel="noopener noreferrer"
+                                                     href=""><span id="host">0</span></a></p></li>
+            <li style="list-style:none;"><p>serwer: <span class="list" id="service">0</span></p></li>
+            <li style="list-style:none;"><p>czas odpowiedzi: <span id="response_time" class="list">0</span> ms</p></li>
+            <li style="list-style:none;"><p>uptime: <span id="uptime" class="list">0</span> %</p></li>
+        </ul>
+        <script src="{{url_for('static', filename='js/webpageinfo.js')}}"></script>
+    </div>
+</div>
+</body>
+</html>
